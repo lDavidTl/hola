@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package arboles;
+import arboles.ConexionSQL;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  *
@@ -13,7 +16,7 @@ public class Node {
     private Integer valor;
  private Node Izdo;
  private Node Dcho;
-
+ 
  public Node(Integer valor)
  {
  this.valor = valor;
@@ -74,8 +77,21 @@ public class Node {
 }
 
 }
- public void printPreOrder() {
- System.out.println(valor);
+ public void printPreOrder() throws SQLException {
+ //--metodo guardar ----
+ //-----------------------------------------------------------   
+/*ConexionSQL con = new ConexionSQL();
+ con.conector();
+ 
+ String preOrden = String.valueOf(valor);
+ 
+  String SQL = "insert into tabla (preOrden) values (preOrden) va?)";
+             PreparedStatement pst = con.prepareStatement(SQL);
+             pst.setString(0,preOrden);
+             pst.execute();
+     */        
+ //-----------------------------------------------------------
+  System.out.println(valor);
  if (Izdo != null) {
  Izdo.printPreOrder();
 

@@ -4,6 +4,9 @@ package arboles;
 import javax.swing.JOptionPane;
 import arboles.Node;
 import arboles.ConexionSQL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 
 /**
@@ -12,7 +15,7 @@ import arboles.ConexionSQL;
  */
 public class PruebaArbol {
    
-  public static void main(String[] args) {
+  public static void main(String[] args) throws SQLException {
   ConexionSQL con = new ConexionSQL();
   con.conector();
    
@@ -42,9 +45,17 @@ public class PruebaArbol {
  else
  conti=false;
  }
-        
+ //--- metodo mostrar -----
+   //-----------------------------------------------------------      
+  /*
+   String SQL = "select * from tabla";
+  Statement st = con.createStatement();
+  ResultSet rs = st.executeQuery(SQL);
+  System.out.println(rs.getString(SQL));
+*/
+   //-----------------------------------------------------------
     
-    System.out.println("Impresión del árbol en orden\n");
+ System.out.println("Impresión del árbol en orden\n");
  arbol.printInOrder();
  System.out.println("Impresión del árbol en preorden\n");
  arbol.printPreOrder();

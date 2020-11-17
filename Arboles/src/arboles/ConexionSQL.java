@@ -7,7 +7,9 @@ package arboles;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -46,6 +48,14 @@ public class ConexionSQL {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
         conector();
     }                  
+
+    PreparedStatement prepareStatement(String SQL) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    Statement createStatement() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     }
     
 
