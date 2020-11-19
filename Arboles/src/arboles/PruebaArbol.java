@@ -7,6 +7,8 @@ import arboles.ConexionSQL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -14,8 +16,11 @@ import java.sql.Statement;
  * @author 2929a
  */
 public class PruebaArbol {
+    
+    
    
   public static void main(String[] args) throws SQLException {
+      PruebaArbol pA = new PruebaArbol();
   ConexionSQL con = new ConexionSQL();
   con.conector();
    
@@ -45,20 +50,24 @@ public class PruebaArbol {
  else
  conti=false;
  }
- //--- metodo mostrar -----
-   //-----------------------------------------------------------      
-  /*
-   String SQL = "select * from tabla";
-  Statement st = con.createStatement();
-  ResultSet rs = st.executeQuery(SQL);
-  System.out.println(rs.getString(SQL));
-*/
-   //-----------------------------------------------------------
+ 
     
  System.out.println("Impresión del árbol en orden\n");
  arbol.printInOrder();
+ 
+ 
+ 
  System.out.println("Impresión del árbol en preorden\n");
- arbol.printPreOrder();
+ //arbol.printPreOrder();
+ //--- metodo mostrar -----
+   //-----------------------------------------------------------      
+  
+   pA.consultaTabla();
+
+   //-----------------------------------------------------------
+ 
+ 
+ 
  System.out.println("Impresión del árbol en postorden\n");
  arbol.printPosOrder();
  t = JOptionPane.showInputDialog(null, "Digite un elemento entero a buscar en el arbol:");
@@ -70,5 +79,49 @@ public class PruebaArbol {
  System.out.println("El valor "+valor+" no está en el arbol\n");
 
  }
+  
+  
+  /*MÉTODO PARA REALIZAR UNA CONSULTA A UNA TABLA MYSQL*/
+        private void consultaTabla() {
+            ConexionSQL con = new ConexionSQL();
+            con.conector();
+            
+        //Realizamos la consulta sql para mostrar todos los datos de la tabla estudiante
+        ResultSet r = buscar("select preOrden from tabla");
+        try {
+            System.out.println("\n datos tabla\n");
+           
+            /*
+            Hacemos un While para recorrer toda la tabla estudiantes
+            y así poder sacar todos los registros de la tabla
+            */
+            while (r.next()) {
+                /*Se muestra los datos que queremos sacar por consola indicandole:
+                        El tipo de dato (int,String...) de cada campo
+                        El nombre de los campos de la tabla entre comillas doble " "
+                */
+                System.out.println(r.getString("preOrden"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PruebaArbol.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//mostrarTablaPropietarios
+   
+       
+        //Este método lo uso para mostrar los datos de una tabla: (executeQuery)
+    ResultSet buscar(String sql) {
+        try {
+            ConexionSQL con = new ConexionSQL();
+            con.conector();
+            Statement stm = con.createStatement();
+            return stm.executeQuery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(PruebaArbol.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }//buscar
+  
     
 }

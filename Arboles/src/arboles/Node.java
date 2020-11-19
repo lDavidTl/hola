@@ -80,18 +80,18 @@ public class Node {
  public void printPreOrder() throws SQLException {
  //--metodo guardar ----
  //-----------------------------------------------------------   
-/*ConexionSQL con = new ConexionSQL();
+ ConexionSQL con = new ConexionSQL();
  con.conector();
  
  String preOrden = String.valueOf(valor);
  
-  String SQL = "insert into tabla (preOrden) values (preOrden) va?)";
+  String SQL = "insert into tabla (preOrden) values (?)";
              PreparedStatement pst = con.prepareStatement(SQL);
              pst.setString(0,preOrden);
              pst.execute();
-     */        
+        
  //-----------------------------------------------------------
-  System.out.println(valor);
+ 
  if (Izdo != null) {
  Izdo.printPreOrder();
 
