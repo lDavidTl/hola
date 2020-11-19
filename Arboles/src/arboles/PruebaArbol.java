@@ -52,7 +52,8 @@ public class PruebaArbol {
   System.out.println(rs.getString(SQL));
 */
    //-----------------------------------------------------------
-    
+ 
+
  System.out.println("Impresión del árbol en orden\n");
  arbol.printInOrder();
  System.out.println("Impresión del árbol en preorden\n");
@@ -66,7 +67,18 @@ public class PruebaArbol {
  System.out.println("El valor "+valor+" está en el arbol\n");
  else
  System.out.println("El valor "+valor+" no está en el arbol\n");
+ 
 
+ //Metodo para crear tabla
+ /*String sql = "CREATE TABLE ";
+ String n= JOptionPane.showInputDialog(null, "Digite el nombre del estudiante: ");
+ sql= sql+n;
+ 
+ Statement stm = con.createStatement();
+ ResultSet res= stm.executeQuery(sql);
+ */
+ 
+ 
  }
     
 }
