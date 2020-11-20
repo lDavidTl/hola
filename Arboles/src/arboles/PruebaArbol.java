@@ -43,10 +43,7 @@ public class PruebaArbol {
  arbol.Adicionar(valor);
  }
  resp =Integer.parseInt(JOptionPane.showInputDialog(null, "Hay mas caracteres a introducir? 1: Si, 2: No"));
- if (resp == 1 )
- conti=true;
- else
- conti=false;
+ conti = resp == 1;
  }
  
     
@@ -60,6 +57,7 @@ public class PruebaArbol {
  //--- metodo mostrar -----
    //-----------------------------------------------------------      
   
+   arbol.printPreOrder();
    pA.consultaTabla();
 
    //-----------------------------------------------------------
