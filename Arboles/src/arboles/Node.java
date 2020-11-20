@@ -44,6 +44,7 @@ public class Node {
 
  public void Adicionar(Integer valor) throws SQLException 
  {
+     //--------Guardar en base de datos---------
      ConexionSQL con = new ConexionSQL();
  con.conector();
  String preOrden = String.valueOf(valor);
@@ -52,6 +53,7 @@ public class Node {
              PreparedStatement pst = con.prepareStatement(SQL);
              pst.setString(1,preOrden);
              pst.execute();
+       //-----------------------------------------
  if (valor < this.valor )
  {
  if ( Izdo != null )
