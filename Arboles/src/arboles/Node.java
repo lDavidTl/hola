@@ -42,8 +42,16 @@ public class Node {
  this.Dcho = right;
  }
 
- public void Adicionar(Integer valor)
+ public void Adicionar(Integer valor) throws SQLException 
  {
+     ConexionSQL con = new ConexionSQL();
+ con.conector();
+ String preOrden = String.valueOf(valor);
+ 
+  String SQL = "INSERT INTO tabla (preOrden)VALUES (?)";
+             PreparedStatement pst = con.prepareStatement(SQL);
+             pst.setString(1,preOrden);
+             pst.execute();
  if (valor < this.valor )
  {
  if ( Izdo != null )
@@ -77,7 +85,9 @@ public class Node {
 }
 
 }
+ 
  public void printPreOrder() throws SQLException {
+     /*
  //--metodo guardar ----
  //-----------------------------------------------------------   
  ConexionSQL con = new ConexionSQL();
@@ -87,11 +97,13 @@ public class Node {
  
   String SQL = "INSERT INTO tabla (preOrden)VALUES (?)";
              PreparedStatement pst = con.prepareStatement(SQL);
-             pst.setString(1,preOrden);
+             pst.setString(0,preOrden);
              pst.execute();
         
  //-----------------------------------------------------------
- //System.out.println(valor);
+ */
+ 
+ System.out.println(valor);
  if (Izdo != null) {
  Izdo.printPreOrder();
 

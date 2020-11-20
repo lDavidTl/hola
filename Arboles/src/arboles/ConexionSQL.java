@@ -60,7 +60,11 @@ public class ConexionSQL {
     
     //---------nuevos metodos-------
     public Statement createStatement() throws SQLException {
-        return con.createStatement();
+        try{
+            return con.createStatement();
+        }catch(SQLException e){
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
     }
 
     public PreparedStatement prepareStatement(String sql) throws SQLException {
