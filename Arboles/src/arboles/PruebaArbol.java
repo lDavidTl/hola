@@ -2,6 +2,7 @@ package arboles;
 import javax.swing.JOptionPane;
 import arboles.Node;
 import arboles.ConexionSQL;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -45,8 +46,18 @@ public class PruebaArbol {
  resp =Integer.parseInt(JOptionPane.showInputDialog(null, "Hay mas caracteres a introducir? 1: Si, 2: No"));
  conti = resp == 1;
  }
+
+ //--- metodo mostrar -----
+   //-----------------------------------------------------------      
+  /*
+   String SQL = "select * from tabla";
+  Statement st = con.createStatement();
+  ResultSet rs = st.executeQuery(SQL);
+  System.out.println(rs.getString(SQL));
+*/
+   //-----------------------------------------------------------
  
-    
+
  System.out.println("Impresión del árbol en orden\n");
  arbol.printInOrder();
  
@@ -73,7 +84,18 @@ public class PruebaArbol {
  System.out.println("El valor "+valor+" está en el arbol\n");
  else
  System.out.println("El valor "+valor+" no está en el arbol\n");
+ 
 
+ //Metodo para crear tabla
+ /*String sql = "CREATE TABLE ";
+ String n= JOptionPane.showInputDialog(null, "Digite el nombre del estudiante: ");
+ sql= sql+n;
+ 
+ Statement stm = con.createStatement();
+ ResultSet res= stm.executeQuery(sql);
+ */
+ 
+ 
  }
   
   
@@ -83,7 +105,7 @@ public class PruebaArbol {
             con.conector();
             
         //Realizamos la consulta sql para mostrar todos los datos de la tabla estudiante
-        ResultSet r = buscar("select preOrden from tabla");
+        ResultSet r = buscar("SELECT * FROM tabla ");
         try {
             System.out.println("\n datos tabla\n");
            
@@ -110,8 +132,10 @@ public class PruebaArbol {
         try {
             ConexionSQL con = new ConexionSQL();
             con.conector();
-            Statement stm = con.createStatement();
+            PreparedStatement stm =  con.prepareStatement(sql);
+            
             return stm.executeQuery(sql);
+
         } catch (SQLException ex) {
             Logger.getLogger(PruebaArbol.class.getName()).log(Level.SEVERE, null, ex);
         }
