@@ -37,25 +37,37 @@ public class ConexionSQL {
             con= (Connection) DriverManager.getConnection(url, user, pass);
             // Si la conexion fue exitosa mostramos un mensaje de conexion exitosa
             if (con!=null){
-                JOptionPane.showMessageDialog(null,"Conexion establecida");
+                //JOptionPane.showMessageDialog(null,"Conexion establecida");
             }
         }
         // Si la conexion NO fue exitosa mostramos un mensaje de error
         catch (ClassNotFoundException | SQLException e){
-            JOptionPane.showMessageDialog(null,"Error de conexion" + e);
+            JOptionPane.showMessageDialog(null,"Error de conexion " + e);
         }
     }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        conector();
-    }                  
-
-    PreparedStatement prepareStatement(String SQL) {
+                      
+    /*              
+//---------- comentar para probar x------------
+    PreparedStatement PreparedStatement(String SQL) {
+       
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     Statement createStatement() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }  */
+
+    
+    //---------nuevos metodos-------
+    public Statement createStatement() throws SQLException {
+        return con.createStatement();
     }
+
+    public PreparedStatement prepareStatement(String sql) throws SQLException {
+        return con.prepareStatement(sql);
+    }
+    //--------------------------------------
+    
     }
     
 
