@@ -34,6 +34,7 @@ public class PruebaArbol {
  {
  t = JOptionPane.showInputDialog(null, "Digite un elemento entero para la raiz del arbol:");
  valor=Integer.parseInt(t);
+ System.out.println(valor);
  arbol = new Node(valor);
  }
  else
@@ -47,34 +48,13 @@ public class PruebaArbol {
  conti = resp == 1;
  }
 
- //--- metodo mostrar -----
-   //-----------------------------------------------------------      
-  /*
-   String SQL = "select * from tabla";
-  Statement st = con.createStatement();
-  ResultSet rs = st.executeQuery(SQL);
-  System.out.println(rs.getString(SQL));
-*/
-   //-----------------------------------------------------------
- 
-
  System.out.println("Impresión del árbol en orden\n");
  arbol.printInOrder();
  
- 
- 
  System.out.println("Impresión del árbol en preorden\n");
- //arbol.printPreOrder();
- //--- metodo mostrar -----
-   //-----------------------------------------------------------      
-  
-   arbol.printPreOrder();
-   pA.consultaTabla();
+  arbol.printPreOrder();
+  pA.consultaTabla();//----------------------------------
 
-   //-----------------------------------------------------------
- 
- 
- 
  System.out.println("Impresión del árbol en postorden\n");
  arbol.printPosOrder();
  t = JOptionPane.showInputDialog(null, "Digite un elemento entero a buscar en el arbol:");
@@ -84,17 +64,6 @@ public class PruebaArbol {
  System.out.println("El valor "+valor+" está en el arbol\n");
  else
  System.out.println("El valor "+valor+" no está en el arbol\n");
- 
-
- //Metodo para crear tabla
- /*String sql = "CREATE TABLE ";
- String n= JOptionPane.showInputDialog(null, "Digite el nombre del estudiante: ");
- sql= sql+n;
- 
- Statement stm = con.createStatement();
- ResultSet res= stm.executeQuery(sql);
- */
- 
  
  }
   
@@ -107,7 +76,7 @@ public class PruebaArbol {
         //Realizamos la consulta sql para mostrar todos los datos de la tabla estudiante
         ResultSet r = buscar("SELECT * FROM tabla ");
         try {
-            System.out.println("\n datos tabla\n");
+            
            
             /*
             Hacemos un While para recorrer toda la tabla estudiantes

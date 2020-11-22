@@ -46,18 +46,7 @@ public class ConexionSQL {
         }
     }
                       
-    /*              
-//---------- comentar para probar x------------
-    PreparedStatement PreparedStatement(String SQL) {
-       
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    Statement createStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }  */
-
-    
+        
     //---------nuevos metodos-------
     public Statement createStatement() throws SQLException {
         try{
