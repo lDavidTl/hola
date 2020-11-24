@@ -16,14 +16,13 @@ public class Node {
     private Integer valor;
  private Node Izdo;
  private Node Dcho;
- //int indice=0;
  
  public Node(Integer valor) throws SQLException 
  {
  this.valor = valor;
  Izdo=null;
  Dcho=null;
- //--------Guardar en orden de ingreso-------------
+ //--------Guardar en la bd en orden de ingreso---------
      ConexionSQL con = new ConexionSQL();
      con.conector(); 
      String valorS = String.valueOf(valor);
@@ -32,10 +31,10 @@ public class Node {
      pst.setString(1,valorS);//-----primer campo
      pst.execute();
      //-------------------------------------------------
-     //indice++;
+    
  }
  public Integer getValor() {
- return valor;
+ return valor; 
  }
  public void setValor(Integer valor) {
  this.valor = valor;
@@ -53,23 +52,15 @@ public class Node {
  this.Dcho = right;
  }
 
+
  public void Adicionar(Integer valor) throws SQLException 
  {
-     //--------Guardar en orden de ingreso-------------
-     /*ConexionSQL con = new ConexionSQL();
-     con.conector(); 
-     String valorS = String.valueOf(valor);
-     String SQL = "INSERT INTO tabla (insercion)VALUES (?)";
-     PreparedStatement pst = con.prepareStatement(SQL);
-     pst.setString(1,valorS);//-----primer campo
-     pst.execute();*/
-     //-------------------------------------------------
  if (valor < this.valor )
  { if ( Izdo != null ){
      Izdo.Adicionar(valor);
      }else{
      Izdo = new Node(valor);
-
+    
  }
 }else
 {
@@ -84,57 +75,78 @@ public class Node {
 
 }
 
- public void printInOrder() {
- if (Izdo != null) {
- Izdo.printInOrder();
-
-}
- System.out.println(valor);
+ public void printInOrder() throws SQLException {
+     if (Izdo != null) {
+     Izdo.printInOrder();
+     }
+     System.out.println(valor);
+ //------- guadar en la bd en inOrden----------
+     ConexionSQL con = new ConexionSQL();
+     con.conector();
+     String preOrden = String.valueOf(valor);
+     String SQL = "INSERT INTO tabla (inOrden)VALUES (?)";
+     PreparedStatement pst = con.prepareStatement(SQL);
+     pst.setString(1,preOrden);
+     pst.execute();
+  //---------------------------------------------
  if (Dcho != null) {
+     
  Dcho.printInOrder();
 
 }
 
 }
  
- public void printPreOrder() throws SQLException {
+ public void printPreOrder(int indice) throws SQLException {
      
  //--metodo guardar en la bd en preOrden----
  ConexionSQL con = new ConexionSQL();
  con.conector();
- 
- String preOrden = String.valueOf(valor);
- //String i= String.valueOf(indice);
-  //String SQL = "UPDATE tabla SET preOrden= ? WHERE id = ?"; //--------
-  String SQL = "INSERT INTO tabla (preOrden)VALUES (?)";
+  
+  String preOrden = String.valueOf(valor);
+  String SQL = "UPDATE tabla SET preOrden= ? WHERE id = ?"; //--------
+  //String SQL = "INSERT INTO tabla (preOrden)VALUES (?)";
   PreparedStatement pst = con.prepareStatement(SQL);
   pst.setString(1,preOrden);
-  //pst.setString(2,i); //------------
+  pst.setInt(2,indice); //------------
   pst.execute();
  //----------------------------------------------------------- 
  
  if (Izdo != null) {
- Izdo.printPreOrder();
+     indice++;//--------------
+ Izdo.printPreOrder(indice++);
  }
   
  if (Dcho != null) {
- Dcho.printPreOrder();
+     indice++;//--------------
+ Dcho.printPreOrder(indice++);
 }
 
  
 }
- public void printPosOrder() {
+ public void printPosOrder() throws SQLException {
+     
  if (Izdo != null) {
+     
  Izdo.printPosOrder();
 
 }
  if (Dcho != null) {
+     
  Dcho.printPosOrder();
 
 }
+ //-------guardar en la d en posorden----------
+ ConexionSQL con = new ConexionSQL();
+     con.conector();
+     String preOrden = String.valueOf(valor);
+  String SQL = "INSERT INTO tabla (posOrden)VALUES (?)";
+  PreparedStatement pst = con.prepareStatement(SQL);
+  pst.setString(1,preOrden);
+  pst.execute();
  System.out.println(valor);
-
 }
+ 
  public boolean
 buscar(Integer v)
 
