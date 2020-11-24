@@ -22,7 +22,7 @@ public class PruebaArbol {
       PruebaArbol pA = new PruebaArbol();
   ConexionSQL con = new ConexionSQL();
   con.conector();
-  int id=1;//-------------- 
+  int id=0;//-------------- 
   
  Integer valor;
  String t;
@@ -50,7 +50,7 @@ public class PruebaArbol {
  }
 
  System.out.println("Impresión del árbol en orden\n");
- arbol.printInOrder();
+ arbol.printInOrder(id);
  //pA.consultaTabla();//----------------------------------
  
  System.out.println("Impresión del árbol en preorden\n");
@@ -58,7 +58,7 @@ public class PruebaArbol {
   pA.consultaTabla();//----------------------------------
 
  System.out.println("Impresión del árbol en postorden\n");
- arbol.printPosOrder();
+ arbol.printPosOrder(id);
  //pA.consultaTabla();//----------------------------------
  
  t = JOptionPane.showInputDialog(null, "Digite un elemento entero a buscar en el arbol:");
