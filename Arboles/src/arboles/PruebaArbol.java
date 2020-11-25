@@ -58,7 +58,7 @@ public class PruebaArbol {
   pA.consultaTabla();//----------------------------------
 
  System.out.println("Impresión del árbol en postorden\n");
- arbol.printPosOrder(id);
+ arbol.printPosOrder(id++);
  //pA.consultaTabla();//----------------------------------
  
  t = JOptionPane.showInputDialog(null, "Digite un elemento entero a buscar en el arbol:");

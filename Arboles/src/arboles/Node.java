@@ -26,7 +26,7 @@ public class Node {
      ConexionSQL con = new ConexionSQL();
      con.conector(); 
      String valorS = String.valueOf(valor);
-     String SQL = "INSERT INTO tabla (insercion)VALUES (?)";
+     String SQL = "INSERT INTO tabla (guardados)VALUES (?)";
      PreparedStatement pst = con.prepareStatement(SQL);
      pst.setString(1,valorS);//-----primer campo
      pst.execute();
@@ -76,29 +76,41 @@ public class Node {
 }
 
  public void printInOrder(int indice) throws SQLException {
-     if (Izdo != null) {
-       //  indice++; //----------
-     Izdo.printInOrder(indice++);
-     }
-     System.out.println(valor);
- //------- guadar en la bd en inOrden----------
+     //------- guadar en la bd en inOrden----------
      ConexionSQL con = new ConexionSQL();
      con.conector();
      String preOrden = String.valueOf(valor);
-     //String SQL = "INSERT INTO tabla (inOrden)VALUES (?)";
-     String SQL = "UPDATE tabla SET inOrden= ? WHERE id = ?"; //--------
-     PreparedStatement pst = con.prepareStatement(SQL);
+     String SQL = "UPDATE tabla SET inOrden= ? WHERE id = ?"; 
+     PreparedStatement pst ;
+     pst= con.prepareStatement(SQL);
      pst.setString(1,preOrden);
      pst.setInt(2,indice);
      pst.execute();
-  //---------------------------------------------
+     if (Izdo != null) {
+     Izdo.printInOrder(indice++);
+     indice++;
+     pst= con.prepareStatement(SQL);
+     pst.setString(1,preOrden);
+     pst.setInt(2,indice);
+     pst.execute();
+     }
+     
+     System.out.println(valor);
+     
+     pst= con.prepareStatement(SQL);
+     pst.setString(1,preOrden);
+     pst.setInt(2,indice);
+     pst.execute();
+     //---------------------------------------------
  if (Dcho != null) {
-     //indice++;//-------
- Dcho.printInOrder(indice++);
-
-}
-
-}
+     Dcho.printInOrder(indice++); 
+     indice++;
+     pst= con.prepareStatement(SQL);
+     pst.setString(1,preOrden);
+     pst.setInt(2,indice);
+     pst.execute();
+ }
+ }
  
  public void printPreOrder(int indice) throws SQLException {
      
@@ -114,42 +126,47 @@ public class Node {
   pst.setInt(2,indice); //------------
   pst.execute();
  //----------------------------------------------------------- 
- 
  if (Izdo != null) {
-     indice++;//--------------
+    indice++;
  Izdo.printPreOrder(indice++);
  }
   
  if (Dcho != null) {
-     indice++;//--------------
+indice++;
  Dcho.printPreOrder(indice++);
 }
+ }
 
- 
-}
  public void printPosOrder(int indice) throws SQLException {
-     
- if (Izdo != null) {
-     indice++;
- Izdo.printPosOrder(indice++);
-
-}
- if (Dcho != null) {
-     indice++;
- Dcho.printPosOrder(indice++);
-
-}
- //-------guardar en la d en posorden----------
- ConexionSQL con = new ConexionSQL();
+     //-------guardar en la d en posorden----------
+     ConexionSQL con = new ConexionSQL();
      con.conector();
      String preOrden = String.valueOf(valor);
-  //String SQL = "INSERT INTO tabla (posOrden)VALUES (?)";
-  String SQL = "UPDATE tabla SET posOrden= ? WHERE id = ?"; //--------
-  PreparedStatement pst = con.prepareStatement(SQL);
-  pst.setString(1,preOrden);
-  pst.setInt(2,indice);
-  pst.execute();
- System.out.println(valor);
+     String SQL = "UPDATE tabla SET posOrden= ? WHERE id = ?";
+     
+     if (Izdo != null) {
+         indice++;
+          Izdo.printPosOrder(indice++);
+          PreparedStatement pst = con.prepareStatement(SQL);
+    pst.setString(1,preOrden);
+    pst.setInt(2,indice);
+    pst.execute();
+     }
+     if (Dcho != null) {
+         indice++;
+     Dcho.printPosOrder(indice++);
+     PreparedStatement pst = con.prepareStatement(SQL);
+    pst.setString(1,preOrden);
+    pst.setInt(2,indice);
+    pst.execute();
+     }
+
+    PreparedStatement pst = con.prepareStatement(SQL);
+    pst.setString(1,preOrden);
+    pst.setInt(2,indice);
+    pst.execute();
+
+     System.out.println(valor);
 }
  
  public boolean
