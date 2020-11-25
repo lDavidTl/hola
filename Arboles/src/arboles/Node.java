@@ -82,11 +82,7 @@ public class Node {
      String preOrden = String.valueOf(valor);
      String SQL = "UPDATE tabla SET inOrden= ? WHERE id = ?"; 
      PreparedStatement pst ;
-     pst= con.prepareStatement(SQL);
-     pst.setString(1,preOrden);
-     pst.setInt(2,indice);
-     pst.execute();
-     
+          
      if (Izdo != null) {
      pst= con.prepareStatement(SQL);
      pst.setString(1,preOrden);
@@ -96,12 +92,12 @@ public class Node {
      }
      
      System.out.println(valor);
-     
+     indice++;
      pst= con.prepareStatement(SQL);
      pst.setString(1,preOrden);
      pst.setInt(2,indice);
      pst.execute();
-     indice++;
+     
      //---------------------------------------------
  if (Dcho != null) {
      pst= con.prepareStatement(SQL);
