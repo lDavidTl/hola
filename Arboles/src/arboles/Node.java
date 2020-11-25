@@ -86,13 +86,13 @@ public class Node {
      pst.setString(1,preOrden);
      pst.setInt(2,indice);
      pst.execute();
+     
      if (Izdo != null) {
-     Izdo.printInOrder(indice++);
-     indice++;
      pst= con.prepareStatement(SQL);
      pst.setString(1,preOrden);
      pst.setInt(2,indice);
      pst.execute();
+     Izdo.printInOrder(indice++);
      }
      
      System.out.println(valor);
@@ -101,14 +101,14 @@ public class Node {
      pst.setString(1,preOrden);
      pst.setInt(2,indice);
      pst.execute();
+     indice++;
      //---------------------------------------------
  if (Dcho != null) {
-     Dcho.printInOrder(indice++); 
-     indice++;
      pst= con.prepareStatement(SQL);
      pst.setString(1,preOrden);
      pst.setInt(2,indice);
      pst.execute();
+     Dcho.printInOrder(indice++);
  }
  }
  
